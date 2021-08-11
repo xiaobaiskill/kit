@@ -18,6 +18,9 @@ type Sub interface {
 * 订阅
 ```
 Subscribe(topic, sub)
+SubscribeFunc(topic, f func(msg interface{}){
+    // to do
+})
 ```
 
 * 发布

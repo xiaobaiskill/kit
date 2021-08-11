@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package rest;
+package rest.proto;
 
-option go_package = "kit/rest/proto";
+option go_package = "github.com/xiaobaiskill/kit/rest/proto;proto";
 
 import "google/protobuf/any.proto";
 import "google/rpc/code.proto";
