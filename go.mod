@@ -1,4 +1,4 @@
-module gitee.com/jinmingzhi/kit
+module github.com/xiaobaiskill/kit
 
 go 1.14
 

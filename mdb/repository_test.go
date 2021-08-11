@@ -3,7 +3,7 @@
 package mdb
 
 import (
-	"gitee.com/jinmingzhi/kit/mdb/test"
+	"github.com/xiaobaiskill/kit/mdb/test"
 	"github.com/stretchr/testify/assert"
 	"go.mongodb.org/mongo-driver/mongo"
 	"testing"

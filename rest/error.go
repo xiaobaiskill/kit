@@ -2,7 +2,7 @@ package rest
 
 import (
 	"encoding/json"
-	"gitee.com/jinmingzhi/kit/rest/proto"
+	"github.com/xiaobaiskill/kit/rest/proto"
 	"net/http"
 	"strings"
 )

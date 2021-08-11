@@ -2,8 +2,8 @@ package rest
 
 import (
 	"fmt"
-	"gitee.com/jinmingzhi/kit/app"
-	"gitee.com/jinmingzhi/kit/rest/middleware"
+	"github.com/xiaobaiskill/kit/app"
+	"github.com/xiaobaiskill/kit/rest/middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"go.uber.org/zap"
 	"net/http"

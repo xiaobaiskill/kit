@@ -1,7 +1,7 @@
 package rdb
 
 import (
-	"gitee.com/jinmingzhi/kit/mlog"
+	"github.com/xiaobaiskill/kit/mlog"
 	"strings"
 )
 

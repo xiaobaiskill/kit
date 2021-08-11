@@ -1,7 +1,7 @@
 package mlog
 
 import (
-	"gitee.com/jinmingzhi/kit/util"
+	"github.com/xiaobaiskill/kit/util"
 )
 
 type Config struct {

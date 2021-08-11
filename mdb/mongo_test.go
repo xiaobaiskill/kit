@@ -4,7 +4,7 @@ package mdb
 
 import (
 	"context"
-	"gitee.com/jinmingzhi/kit/mdb/test"
+	"github.com/xiaobaiskill/kit/mdb/test"
 	"github.com/google/uuid"
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/assert"

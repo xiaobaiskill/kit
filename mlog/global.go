@@ -1,8 +1,8 @@
 package mlog
 
 import (
-	"gitee.com/jinmingzhi/kit/app"
-	"gitee.com/jinmingzhi/kit/eventbus"
+	"github.com/xiaobaiskill/kit/app"
+	"github.com/xiaobaiskill/kit/eventbus"
 	"io"
 	"log"
 	"sync"

@@ -3,7 +3,7 @@ package rest
 import (
 	"context"
 	"fmt"
-	"gitee.com/jinmingzhi/kit/rest/proto"
+	"github.com/xiaobaiskill/kit/rest/proto"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"go.uber.org/zap"
 	"google.golang.org/genproto/googleapis/rpc/code"

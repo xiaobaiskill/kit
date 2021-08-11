@@ -2,8 +2,8 @@ package rpc
 
 import (
 	"fmt"
-	"gitee.com/jinmingzhi/kit/app"
-	"gitee.com/jinmingzhi/kit/util"
+	"github.com/xiaobaiskill/kit/app"
+	"github.com/xiaobaiskill/kit/util"
 	grpcMiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpcValidator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	"go.uber.org/zap"

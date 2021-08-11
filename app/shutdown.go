@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	"gitee.com/jinmingzhi/kit/eventbus"
+	"github.com/xiaobaiskill/kit/eventbus"
 	"log"
 	"os"
 	"os/signal"
