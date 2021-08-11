@@ -11,7 +11,7 @@ var (
 )
 
 func TestMain(m *testing.M) {
-	testCli = NewClient("mongodb://localhost:27017")
+	testCli = NewClient(&Config{URL: "mongodb://localhost:27017"})
 	defer testCli.Disconnect(context.Background())
 	m.Run()
 }

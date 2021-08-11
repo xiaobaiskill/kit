@@ -19,13 +19,13 @@ func NewRepository(client *mongo.Client, dbName, collectionName string) *Reposit
 	}
 }
 
-func NewClient(url string) *mongo.Client {
+func NewClient(cfg *Config) *mongo.Client {
 	rb := bson.NewRegistryBuilder()
 	codec := &DecimalCodec{}
 	rb.RegisterCodec(tDecimal, codec)
 	register := rb.Build()
 	ctx := context.Background()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(url).SetRegistry(register))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(cfg.URL).SetRegistry(register))
 	if err != nil {
 		log.Fatal("mongo.Connect error", zap.Error(err))
 	}
@@ -86,14 +86,10 @@ func (m *Repository) Find(ctx context.Context, filter bson.M, results interface{
 }
 
 func (m *Repository) DeleteOne(ctx context.Context, filter bson.M, opts ...*options.DeleteOptions) error {
-	delRes, err := m.collection.DeleteOne(ctx, filter, opts...)
+	_, err := m.collection.DeleteOne(ctx, filter, opts...)
 	if err != nil {
 		log.Error("DeleteOne error", zap.Error(err))
 		return err
-	}
-
-	if delRes.DeletedCount == 0 {
-		return ErrNotFound
 	}
 
 	return nil
@@ -110,17 +106,13 @@ func (m *Repository) DeleteMany(ctx context.Context, filter bson.M, opts ...*opt
 }
 
 func (m *Repository) UpdateOne(ctx context.Context, filter bson.M, entity interface{}) error {
-	updateRes, err := m.collection.ReplaceOne(ctx, filter, entity)
+	_, err := m.collection.ReplaceOne(ctx, filter, entity)
 	if err != nil {
 		if IsDuplicateKeyError(err) {
 			return ErrDuplicateKey
 		}
 		log.Error("ReplaceOne error", zap.Error(err))
 		return err
-	}
-
-	if updateRes.ModifiedCount == 0 {
-		return ErrNotFound
 	}
 
 	return nil

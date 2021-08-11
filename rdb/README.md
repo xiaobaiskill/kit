@@ -4,17 +4,15 @@ sqlx 封装
 ```
 
 ### 使用
-* 设置全局变量
-```
-export MYSQL_DSN="root:root@tcp(192.168.1.92:33306)/cdce-service?parseTime=true"
-export MYSQL_CONN_MAX_TIME="30m"
-export MYSQL_CONN_MAX_IDLE="10"
-export MYSQL_CONN_MAX_OPEN="100"
-```
 
 * 实例化
 ```
-repo := NewMySQLRepository(MustLoadConfig())
+repo := NewMySQLRepository(Config{
+        		DSN:             "root:root@tcp(127.0.0.1:3306)/test?parseTime=true",
+        		ConnMaxLifetime: "30m",
+        		MaxIdleConns:    "10",
+        		SetMaxOpenConns: "20",
+        	})
 ```
 
 * 简单使用
