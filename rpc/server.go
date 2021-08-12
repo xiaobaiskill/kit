@@ -2,10 +2,10 @@ package rpc
 
 import (
 	"fmt"
-	"github.com/xiaobaiskill/kit/app"
-	"github.com/xiaobaiskill/kit/util"
 	grpcMiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpcValidator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
+	"github.com/xiaobaiskill/kit/app"
+	"github.com/xiaobaiskill/kit/util"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"

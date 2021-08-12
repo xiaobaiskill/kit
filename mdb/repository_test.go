@@ -3,8 +3,8 @@
 package mdb
 
 import (
-	"github.com/xiaobaiskill/kit/mdb/test"
 	"github.com/stretchr/testify/assert"
+	"github.com/xiaobaiskill/kit/mdb/test"
 	"go.mongodb.org/mongo-driver/mongo"
 	"testing"
 )

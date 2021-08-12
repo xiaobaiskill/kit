@@ -7,7 +7,7 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
-	codes := GenerateRecoveryCode(5,16)
+	codes := GenerateRecoveryCode(5, 16)
 	assert.Equal(t, len(codes), 16)
 	fmt.Println(codes)
 }

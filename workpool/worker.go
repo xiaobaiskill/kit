@@ -1,6 +1,5 @@
 package workpool
 
-
 type worker struct {
 	id       int
 	work     chan Job

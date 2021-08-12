@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-
 func TestLogger(t *testing.T) {
 	root := Logger("")
 	root.Info("info")

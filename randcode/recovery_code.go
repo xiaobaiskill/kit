@@ -2,7 +2,6 @@ package randcode
 
 import "fmt"
 
-
 func GenerateRecoveryCode(strSideLen, strs int) []string {
 	m := make(map[string]struct{})
 	codes := make([]string, 0, strs)

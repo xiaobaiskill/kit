@@ -2,9 +2,9 @@ package rest
 
 import (
 	"fmt"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/xiaobaiskill/kit/app"
 	"github.com/xiaobaiskill/kit/rest/middleware"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"go.uber.org/zap"
 	"net/http"
 )
@@ -25,6 +25,7 @@ func NewServer(cfg *Config, options ...middleware.MiddleWareHeadle) *Server {
 		runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.JSONPb{OrigName: true, EmitDefaults: cfg.EmitDefaults}),
 		runtime.WithProtoErrorHandler(CustomRESTErrorHandler),
 		runtime.WithIncomingHeaderMatcher(CustomMatcher), // HTTP请求头到gRPC客户端元数据的映射
+
 	)
 
 	httpServeMux := http.NewServeMux()
@@ -45,8 +46,9 @@ func NewServer(cfg *Config, options ...middleware.MiddleWareHeadle) *Server {
 	}
 }
 
+// To keep the the default mapping rule alongside
 func CustomMatcher(key string) (string, bool) {
-	return key, true
+	return runtime.DefaultHeaderMatcher(key)
 }
 
 func (s *Server) ListenAndServed() {

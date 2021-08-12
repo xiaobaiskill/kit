@@ -12,12 +12,12 @@ const (
 )
 
 var (
-	ErrNotFound            = errors.New("not found")
-	ErrNothingUpdated      = errors.New("nothing updated")
-	ErrDuplicateKey        = errors.New("duplicate key")
-	ErrAffectMany          = errors.New("affect many rows")
-	ErrExecInReadOnlyTx    = errors.New("cannot exec in read-only transaction")
-	ErrConcurrencyConflict = errors.New("concurrency conflict")
+	ErrNotFound                 = errors.New("not found")
+	ErrNothingUpdated           = errors.New("nothing updated")
+	ErrDuplicateKey             = errors.New("duplicate key")
+	ErrAffectMany               = errors.New("affect many rows")
+	ErrExecInReadOnlyTx         = errors.New("cannot exec in read-only transaction")
+	ErrConcurrencyConflict      = errors.New("concurrency conflict")
 	ErrInvalidDBValueForStrings = errors.New("invalid db value for strings")
 )
 

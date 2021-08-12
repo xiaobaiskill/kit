@@ -3,8 +3,8 @@ package rest
 import (
 	"context"
 	"fmt"
-	"github.com/xiaobaiskill/kit/rest/proto"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/xiaobaiskill/kit/rest/proto"
 	"go.uber.org/zap"
 	"google.golang.org/genproto/googleapis/rpc/code"
 	spb "google.golang.org/genproto/googleapis/rpc/status"
@@ -49,9 +49,7 @@ func CustomRESTErrorHandler(ctx context.Context, mux *runtime.ServeMux, m runtim
 	}
 
 	md, ok := runtime.ServerMetadataFromContext(ctx)
-	if !ok {
-		log.Error("extract ServerMetadata from context error")
-	} else {
+	if ok {
 		handleForwardResponseServerMetadata(w, mux, md)
 		handleForwardResponseTrailerHeader(w, md)
 	}
