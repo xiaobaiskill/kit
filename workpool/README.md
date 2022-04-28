@@ -1,23 +1,28 @@
 ### 简介
+
 ```
 workpool
 限流器
 ```
 
 ### 使用
-* 开启调度
+
+- 开启调度
+
 ```
-# work_num 任务并发数（工作数） 
-StartDispathcher(work_num int)
+# work_num 任务并发数（工作数）
+workQueue := StartDispathcher(work_num int)
 ```
 
-* 加入job
+- 加入 job
+
 ```
 # job 接口
-WorkQueue <- job
+workQueue <- job
 ```
 
-* 关闭调度
+- 关闭调度
+
 ```
 StopDispathcher()
 ```
