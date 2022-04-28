@@ -20,7 +20,7 @@ func (s *Student) Execute() {
 
 func TestStartDispathcher(t *testing.T) {
 	start := time.Now()
-	StartDispathcher(5)
+	jobChan := StartDispathcher(2)
 	var wg sync.WaitGroup
 	for i := 1; i < 10; i++ {
 		s := &Student{
@@ -28,17 +28,12 @@ func TestStartDispathcher(t *testing.T) {
 			wg: &wg,
 		}
 		wg.Add(1)
-		WorkQueue <- s
+		jobChan <- s
 	}
 
 	wg.Wait()
 	StopDispathcher()
 
-	sub := time.Now().Sub(start).Seconds()
-	if sub > 2 && sub < 3 {
-		return
-	}
-
-	t.Fatal("err")
-
+	sub := time.Since(start).Seconds()
+	t.Log(sub)
 }

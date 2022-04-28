@@ -1,15 +1,14 @@
 package workpool
 
 var (
-	WorkQueue  chan Job
 	workerPool workerPoolType
 	works      = make([]*worker, 0)
 )
 
 type workerPoolType chan chan Job
 
-func StartDispathcher(work_num int) {
-	WorkQueue = make(chan Job, work_num*2)
+func StartDispathcher(work_num int) chan Job {
+	workQueue := make(chan Job, work_num*2)
 	workerPool = make(workerPoolType, work_num)
 
 	for i := 0; i < work_num; i++ {
@@ -17,14 +16,12 @@ func StartDispathcher(work_num int) {
 	}
 
 	go func() {
-		for {
-			select {
-			case work := <-WorkQueue:
-				workqueue := <-workerPool
-				workqueue <- work
-			}
+		for work := range workQueue {
+			workqueue := <-workerPool
+			workqueue <- work
 		}
 	}()
+	return workQueue
 }
 
 func StopDispathcher() {
