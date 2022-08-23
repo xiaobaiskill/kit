@@ -1,8 +1,9 @@
 package mlog
 
 import (
-	"go.uber.org/zap/zapcore"
 	"testing"
+
+	"go.uber.org/zap/zapcore"
 )
 
 func TestLogger(t *testing.T) {
@@ -28,4 +29,8 @@ func TestMLog_SetLevel(t *testing.T) {
 	root.SetLevel(zapcore.DebugLevel)
 	root.Debug("debug 3")
 	sub.Debug("debug 3")
+
+	SetLevel(zapcore.InfoLevel)
+	root.Debug("debug 4")
+	sub.Debug("debug 4")
 }

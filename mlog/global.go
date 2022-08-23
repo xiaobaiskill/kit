@@ -1,11 +1,13 @@
 package mlog
 
 import (
-	"github.com/xiaobaiskill/kit/app"
-	"github.com/xiaobaiskill/kit/eventbus"
 	"io"
 	"log"
 	"sync"
+
+	"github.com/xiaobaiskill/kit/app"
+	"github.com/xiaobaiskill/kit/eventbus"
+	"go.uber.org/zap/zapcore"
 )
 
 var (
@@ -32,6 +34,15 @@ func Logger(name string) *MLog {
 	}
 
 	return logger.(*MLog)
+}
+
+func SetLevel(level zapcore.Level) {
+	std.SetLevel(level)
+	loggerMap.Range(func(key interface{}, value interface{}) bool {
+		log := value.(*MLog)
+		log.SetLevel(level)
+		return true
+	})
 }
 
 func Sync() {
