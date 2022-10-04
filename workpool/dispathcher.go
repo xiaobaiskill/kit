@@ -1,18 +1,21 @@
 package workpool
 
-var (
-	workerPool workerPoolType
-	works      = make([]*worker, 0)
-)
-
 type workerPoolType chan chan Job
 
-func StartDispathcher(work_num int) chan Job {
-	workQueue := make(chan Job, work_num*2)
-	workerPool = make(workerPoolType, work_num)
+type dispathcher struct {
+	workerPool workerPoolType
+	works      []*worker
+	workQueue  chan Job
+}
 
-	for i := 0; i < work_num; i++ {
-		newWorker(i, workerPool).start()
+func NewDispathcher(num int) *dispathcher {
+	workQueue := make(chan Job, num*2)
+	workerPool := make(workerPoolType, num)
+	works := make([]*worker, 0, num)
+	for i := 0; i < num; i++ {
+		work := newWorker(i, workerPool)
+		work.start()
+		works = append(works, work)
 	}
 
 	go func() {
@@ -21,11 +24,19 @@ func StartDispathcher(work_num int) chan Job {
 			workqueue <- work
 		}
 	}()
-	return workQueue
+	return &dispathcher{
+		workerPool: workerPool,
+		works:      works,
+		workQueue:  workQueue,
+	}
 }
 
-func StopDispathcher() {
-	for _, work := range works {
+func (d *dispathcher) AddJob(job Job) {
+	d.workQueue <- job
+}
+
+func (d *dispathcher) Stop() {
+	for _, work := range d.works {
 		work.stop()
 	}
 }

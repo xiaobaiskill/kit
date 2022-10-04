@@ -11,18 +11,18 @@ workpool
 
 ```
 # work_num 任务并发数（工作数）
-workQueue := StartDispathcher(work_num int)
+dispathcher := NewDispathcher(num int)
 ```
 
 - 加入 job
 
 ```
 # job 接口
-workQueue <- job
+dispathcher.AddJob(job)
 ```
 
 - 关闭调度
 
 ```
-StopDispathcher()
+dispathcher.Stop()
 ```

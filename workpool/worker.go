@@ -21,9 +21,7 @@ func (w *worker) start() {
 	}()
 }
 func (w *worker) stop() {
-	go func() {
-		w.end <- struct{}{}
-	}()
+	w.end <- struct{}{}
 }
 
 func newWorker(id int, workerQueue chan chan Job) *worker {
@@ -31,8 +29,7 @@ func newWorker(id int, workerQueue chan chan Job) *worker {
 		id:       id,
 		work:     make(chan Job),
 		workPool: workerQueue,
-		end:      make(chan struct{}),
+		end:      make(chan struct{}, 1),
 	}
-	works = append(works, work)
 	return work
 }
