@@ -20,8 +20,8 @@ func (s *Student) Execute() {
 
 func TestStartDispathcher(t *testing.T) {
 	start := time.Now()
-	d1 := NewDispathcher(2)
-	d2 := NewDispathcher(2)
+	var d1 Dispathcher = NewDispathcher(2)
+	var d2 Dispathcher = NewDispathcher(2)
 	var wg sync.WaitGroup
 	for i := 1; i < 9; i++ {
 		s := &Student{

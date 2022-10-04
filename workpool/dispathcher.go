@@ -2,13 +2,13 @@ package workpool
 
 type workerPoolType chan chan Job
 
-type dispathcher struct {
+type dispathcherImpl struct {
 	workerPool workerPoolType
 	works      []*worker
 	workQueue  chan Job
 }
 
-func NewDispathcher(num int) *dispathcher {
+func NewDispathcher(num int) *dispathcherImpl {
 	workQueue := make(chan Job, num*2)
 	workerPool := make(workerPoolType, num)
 	works := make([]*worker, 0, num)
@@ -24,18 +24,18 @@ func NewDispathcher(num int) *dispathcher {
 			workqueue <- work
 		}
 	}()
-	return &dispathcher{
+	return &dispathcherImpl{
 		workerPool: workerPool,
 		works:      works,
 		workQueue:  workQueue,
 	}
 }
 
-func (d *dispathcher) AddJob(job Job) {
+func (d *dispathcherImpl) AddJob(job Job) {
 	d.workQueue <- job
 }
 
-func (d *dispathcher) Stop() {
+func (d *dispathcherImpl) Stop() {
 	for _, work := range d.works {
 		work.stop()
 	}
